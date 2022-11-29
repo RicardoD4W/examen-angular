@@ -23,4 +23,9 @@ export class ResultComponent implements OnInit {
         return this.weatherService.getBusquedas();
 
   }
+
+  get loading(){
+    document.querySelector('.id')?.classList.remove('hidden');
+    return this.weatherService.getState();
+  }
 }
