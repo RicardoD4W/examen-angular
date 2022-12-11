@@ -27,9 +27,9 @@
 
 
 
-            <span class="text-9xl font-semibold text-center flex justify-center flex-col">{{(busqueda.list[0].main.temp - 273).toFixed(2)}}ºC
-                <span class="text-black/20 text-sm">Mínima: {{busqueda.list[0].main.temp_min.toFixed(2)}} - Máxima: {{busqueda.list[0].main.temp_max.toFixed(2)}}</span>
-                <span class="text-black/20 text-sm">Sensación térmica: {{busqueda.list[0].main.feels_like.toFixed(2)}}</span>
+            <span class="text-5xl font-semibold text-center flex justify-center flex-col">{{(busqueda.list[0].main.temp - 273).toFixed(2)}}ºC
+                <span class="text-black/20 text-sm">Mínima: {{(busqueda.list[0].main.temp_min - 273).toFixed(2)}} - Máxima: {{(busqueda.list[0].main.temp_max - 273).toFixed(2)}}</span>
+                <span class="text-black/20 text-sm">Sensación térmica: {{(busqueda.list[0].main.feels_like - 273).toFixed(2)}}</span>
             </span>
 
             <div class="text-black/25 flex flex-col ">
