@@ -15,12 +15,15 @@ export class WeatherserviceService {
 
 
   loading : boolean = false;
+  error : boolean = false;
   
 
   getState(){
     return this.loading;
   }
-
+  getStateError(){
+    return this.error;
+  }
 
 
   getBusquedas(){
@@ -29,6 +32,7 @@ export class WeatherserviceService {
 
 
   peticion(busqueda : string , lang : string = 'es'){
+    this.error = false;
     this.HttpClinet.get(`https://api.openweathermap.org/data/2.5/forecast?q=${busqueda}&appid=${this.API_KEY}&lang=${lang}`)
       .subscribe((resolve : any) =>{
         this.loading = true;
@@ -42,7 +46,8 @@ export class WeatherserviceService {
       ,
       (reject =>{
         console.log('error');
-        this.Router.navigate(['/404']);
+        this.error = true;
+        // this.Router.navigate(['/404']);
       }));
 
   }

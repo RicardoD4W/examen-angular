@@ -28,4 +28,9 @@ export class ResultComponent implements OnInit {
     document.querySelector('.id')?.classList.remove('hidden');
     return this.weatherService.getState();
   }
+
+  get error(){
+    document.querySelector('.error')?.classList.remove('hidden');
+    return this.weatherService.getStateError();
+  }
 }
