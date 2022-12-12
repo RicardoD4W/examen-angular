@@ -42,12 +42,12 @@ export class WeatherserviceService {
       }, 1000);
           console.log(resolve);
       }
-      
       ,
+      
       (reject =>{
         console.log('error');
         this.error = true;
-        // this.Router.navigate(['/404']);
+        //this.Router.navigate(['/404']);
       }));
 
   }
