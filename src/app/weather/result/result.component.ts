@@ -12,6 +12,12 @@ export class ResultComponent implements OnInit {
   constructor(private weatherService : WeatherserviceService) { }
 
   ruta() : string{
+    if(this.busqueda.list[0].weather[0].icon.includes('n')){
+      document.querySelector('.special')?.classList.remove('from-blue-300');
+      document.querySelector('.special')?.classList.remove('shadow-blue-300');
+      document.querySelector('.special')?.classList.add('from-orange-300');
+      document.querySelector('.special')?.classList.add('shadow-orange-300');
+    }
     return 'http://openweathermap.org/img/wn/'+ this.busqueda.list[0].weather[0].icon +'@2x.png';
   } 
 
@@ -20,6 +26,7 @@ export class ResultComponent implements OnInit {
   }
 
   get busqueda() {
+
         return this.weatherService.getBusquedas();
 
   }
