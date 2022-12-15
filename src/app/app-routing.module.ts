@@ -7,6 +7,7 @@ import { MainPageComponent } from './weather/main-page/main-page.component';
 const routes: Routes = [
   {path : '' , component: MainPageComponent},
   {path : 'info-details', component : InfoDetailsComponent},
+  {path : 'info-details/:nombre', component : InfoDetailsComponent},
   {path : '404', component : ErrorComponent},
   {path : '**', redirectTo : '404'}
 ];

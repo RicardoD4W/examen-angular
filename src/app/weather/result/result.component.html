@@ -1,14 +1,13 @@
 
 
-<div class="flex justify-center flex-col">
+<div class="flex justify-center flex-col ">
     <span class="text-center text-3xl font-semibold">Weather details:</span>
-    <hr class="mx-5 my-3">
 
     <div class="loading flex justify-center items-center" *ngIf="loading">
         <img class="animate-spin w-52" src="../../../../assets/spinner.png" alt="loading">
     </div>
 
-    <div class="error flex justify-center items-center" *ngIf="error"> 
+    <div aTilt class="error flex justify-center items-center" *ngIf="error"> 
         <p class="p-4 text-red-700 font-light bg-red-400/40 rounded">Error recurso no encontrado bip bup bip! 🤖  </p>
     </div>
     
@@ -18,30 +17,26 @@
 
 
     
-    <div class="flex justify-center hidden id" *ngIf="!loading">
-        <div class="special rounded-xl w-[80%] shadow-xl shadow-blue-300 bg-gradient-to-b from-blue-300 hover:scale-110 ring-black hover:ring-2 transition-all cursor-pointer">
-                <div class="mx-2 my-2">
+    <div  class="flex justify-center hidden id" *ngIf="!loading">
+        <div aTilt [routerLink] = "['/info-details', busqueda.name]"
+        class=" special rounded-xl w-[80%] h-min shadow-md shadow-blue-300 bg-gradient-to-b from-blue-300 to-indigo-300  ring-black hover:ring-2 transition-all cursor-pointer">
+                <div class="mx-2 ">
                     <img class="float-right capitalize font-thin" [src]= ruta() />
             <div class="text-black/25 flex flex-col ">
-                <span>{{busqueda.city.name}} (Latitud: {{busqueda.city.coord.lat}} - Longitud: {{busqueda.city.coord.lon}})</span>
-                <span>Fecha: {{busqueda.list[0].dt_txt}}</span>
+                <span>{{busqueda.name}} (Latitud: {{busqueda.coord.lat}} - Longitud: {{busqueda.coord.lon}})</span>
             </div>
             
-
-
-
-
-            <span class="text-5xl font-semibold text-center flex justify-center flex-col">{{(busqueda.list[0].main.temp - 273).toFixed(2)}}ºC
-                <span class="text-black/20 text-sm">Mínima: {{(busqueda.list[0].main.temp_min - 273).toFixed(2)}} - Máxima: {{(busqueda.list[0].main.temp_max - 273).toFixed(2)}}</span>
-                <span class="text-black/20 text-sm">Sensación térmica: {{(busqueda.list[0].main.feels_like - 273).toFixed(2)}}</span>
+            <span class="text-5xl font-semibold text-center flex justify-center flex-col">{{(busqueda.main.temp - 273).toFixed(2)}}ºC
+                <span class="text-black/20 text-sm">Mínima: {{(busqueda.main.temp_min - 273).toFixed(2)}} - Máxima: {{(busqueda.main.temp_max - 273).toFixed(2)}}</span>
+                <span class="text-black/20 text-sm">Sensación térmica: {{(busqueda.main.feels_like - 273).toFixed(2)}}</span>
             </span>
 
-            <div class="text-black/25 flex flex-col ">
-                <span>Viento {{busqueda.list[0].wind.speed}} km/h</span>
-                <span>Humedad {{busqueda.list[0].main.humidity}}%</span>
-                <span>Presion {{busqueda.list[0].main.pressure}}Pa</span>  
+            <div class="text-black/25 flex flex-col mt-1">
+                <span>Viento {{busqueda.wind.speed}} km/h</span>
+                <span>Humedad {{busqueda.main.humidity}}%</span>
+                <span>Presion {{busqueda.main.pressure}}Pa</span>  
             </div>
-            <span class="float-right capitalize font-thin">{{(busqueda.list[0].weather[0].description)}}</span>
+            <span class="float-right capitalize font-thin">{{(busqueda.weather[0].description)}}</span>
 
                 </div>
         </div>
