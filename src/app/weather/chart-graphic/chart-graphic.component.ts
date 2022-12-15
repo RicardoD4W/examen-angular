@@ -35,6 +35,10 @@ export class ChartGraphicComponent {
 
   fechas : string[] = [];
   temperaturas : string[] = [];
+  temperaturasMax : number[] = [];
+  deg : number[] = [];
+  gust : number[] = [];
+  speed : number[] = [];
   
 
 
@@ -44,6 +48,7 @@ export class ChartGraphicComponent {
 
 
     this.createChart(  );
+    this.createChart2(  );
 
   }
 
@@ -59,8 +64,12 @@ export class ChartGraphicComponent {
         for(let i = 0; i< 8 ; i++){
           this.fechas.push(this.tiempo.list[i].dt_txt.toString().substring(10,16));
           this.temperaturas.push(((this.tiempo.list[i].main.temp -273)  ).toString());
+          this.temperaturasMax.push(((this.tiempo.list[i].main.temp -273)  ));
           console.log(this.tiempo)
         }
+
+        let MAX = Math.max(...this.temperaturasMax);
+        let MIN = Math.min(...this.temperaturasMax);
 
         
         this.chart = new Chart("MyChart", {
@@ -71,14 +80,75 @@ export class ChartGraphicComponent {
               {
                 label: "Temperatura - ºC",
                 data: [...this.temperaturas],
-                backgroundColor: 'blue',
-                pointRadius : 5 
+                backgroundColor: 'green',
+                pointRadius : 5 ,
+                borderColor : 'green'
               },
               {
-                label: "Profit",
-                data: ['542', '542', '536', '327', '17',
-                       '0.00', '538', '541'],
-                backgroundColor: 'limegreen'
+                label: "Max",
+                data: [MAX,MAX,MAX,MAX,MAX,MAX,MAX,MAX],
+                backgroundColor: 'red',
+                pointRadius : 3 ,
+                borderDash : [2,2],
+                borderColor : 'red'
+
+              } ,
+              {
+                label: "Min",
+                data: [MIN,MIN,MIN,MIN,MIN,MIN,MIN,MIN],
+                backgroundColor: 'blue',
+                pointRadius : 3,
+                borderDash : [2,2],
+                borderColor : 'blue'
+
+
+              }  
+            ]
+          },
+          options: this.options
+          
+        });
+      })
+    })
+      
+
+  }
+
+
+
+  createChart2(){    
+    Chart.defaults.scales.linear.min = -5;
+    Chart.defaults.scales.linear.max = 25;
+
+    this.activeRouting.params.subscribe(( {nombre} )=>{
+      this.weatherService.peticionDetails(nombre).subscribe((respose)=>{
+        this.tiempo = respose;
+        for(let i = 0; i< 8 ; i++){
+          this.speed.push(this.tiempo.list[i].wind.speed);
+          this.gust.push((this.tiempo.list[i].wind.gust)/100);
+          this.deg.push(this.tiempo.list[i].wind.deg);
+
+        }
+        
+        this.chart = new Chart("MyChart2", {
+          type: 'line', //this denotes tha type of chart
+          data: {// values on X-Axis
+            labels: [...this.fechas], 
+             datasets: [
+              {
+                label: "Vel Viento",
+                data: [...this.speed],
+                backgroundColor: 'green',
+              },
+              {
+                label: "Ráfaga",
+                data: [...this.gust],
+                backgroundColor: 'red',
+              } ,
+              {
+                label: "Ángulo",
+                data: [...this.deg],
+                backgroundColor: 'blue',
               }  
             ]
           },
