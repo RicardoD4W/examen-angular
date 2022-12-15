@@ -19,7 +19,7 @@
     
     <div  class="flex justify-center hidden id" *ngIf="!loading">
         <div aTilt [routerLink] = "['/info-details', busqueda.name]"
-        class=" special rounded-xl w-[80%] h-min shadow-md shadow-blue-300 bg-gradient-to-b from-blue-300 to-indigo-300  ring-black hover:ring-2 transition-all cursor-pointer">
+        class="active:opacity-50 special rounded-xl w-[80%] h-min shadow-md shadow-blue-300 bg-gradient-to-b from-blue-300 to-indigo-300  ring-black hover:ring-2 transition-all cursor-pointer">
                 <div class="mx-2 ">
                     <img class="float-right capitalize font-thin" [src]= ruta() />
             <div class="text-black/25 flex flex-col ">
