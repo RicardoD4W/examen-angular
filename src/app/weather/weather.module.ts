@@ -7,6 +7,7 @@ import { InfoDetailsComponent } from './info-details/info-details.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularTiltModule } from 'angular-tilt';
 import { RouterModule } from '@angular/router';
+import { ChartGraphicComponent } from './chart-graphic/chart-graphic.component';
 
 
 
@@ -16,13 +17,15 @@ import { RouterModule } from '@angular/router';
     ResultComponent,
     MainPageComponent,
     InfoDetailsComponent,
+    ChartGraphicComponent,
 
   ],
   imports: [
     CommonModule,
     BrowserModule,  
     AngularTiltModule,
-    RouterModule
+    RouterModule,
+    
     // BrowserAnimationsModule
   ],
   exports : [

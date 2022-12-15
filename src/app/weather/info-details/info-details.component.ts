@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { WeatherserviceService } from '../servicios/weatherservice.service';
 
 @Component({
   selector: 'app-info-details',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoDetailsComponent implements OnInit {
 
-  constructor() { }
+  
+
+  constructor(
+    private weatherService : WeatherserviceService, 
+    private activeRouting : ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
+    this.activeRouting.params.subscribe(( {nombre} )=>{
+      this.weatherService.peticionDetails(nombre)
+    })
+
+    
   }
+
+
+  
 
 }

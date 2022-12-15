@@ -13,6 +13,7 @@ export class WeatherserviceService {
 
   private API_KEY : string = 'c50753471a70495326473300eecc3c5b';
   busquedasRealizadas! : TiempoActual;
+  busquedasTimepo! : Tiempo[];
 
 
   loading : boolean = false;
@@ -55,7 +56,10 @@ export class WeatherserviceService {
 
 
 
-
+  peticionDetails(busqueda : string , lang : string = 'es'){
+    return this.HttpClinet.get<Tiempo>(`https://api.openweathermap.org/data/2.5/forecast?q=${busqueda}&appid=${this.API_KEY}&lang=${lang}`)
+      
+  }
 
 
 }
