@@ -11,7 +11,7 @@ import { WeatherserviceService } from '../servicios/weatherservice.service';
   styleUrls: ['./chart-graphic.component.css']
 })
 export class ChartGraphicComponent {
-
+ 
 
   constructor(
     private weatherService : WeatherserviceService, 
