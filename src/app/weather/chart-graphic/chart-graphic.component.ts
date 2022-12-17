@@ -29,9 +29,11 @@ export class ChartGraphicComponent {
       enabled: true,
 
     }
-    
-    
   };
+
+
+
+
 
   fechas : string[] = [];
   temperaturas : string[] = [];
@@ -116,43 +118,56 @@ export class ChartGraphicComponent {
 
 
 
+
+  public options2: any = {
+    pointRadius	: 5,
+    elements: {
+      line: {
+        borderWidth: 5
+      }
+    },
+    aspectRatio:1.5,
+    tooltips: {
+      // Disable the on-canvas tooltip
+      enabled: true,
+
+    }};
+    
   createChart2(){    
-    Chart.defaults.scales.linear.min = -5;
-    Chart.defaults.scales.linear.max = 25;
 
     this.activeRouting.params.subscribe(( {nombre} )=>{
       this.weatherService.peticionDetails(nombre).subscribe((respose)=>{
         this.tiempo = respose;
         for(let i = 0; i< 8 ; i++){
           this.speed.push(this.tiempo.list[i].wind.speed);
-          this.gust.push((this.tiempo.list[i].wind.gust)/100);
+          this.gust.push((this.tiempo.list[i].wind.gust));
           this.deg.push(this.tiempo.list[i].wind.deg);
 
         }
         
         this.chart = new Chart("MyChart2", {
-          type: 'line', //this denotes tha type of chart
+          type: 'radar', //this denotes tha type of chart
           data: {// values on X-Axis
             labels: [...this.fechas], 
              datasets: [
               {
                 label: "Vel Viento",
                 data: [...this.speed],
-                backgroundColor: 'green',
+                backgroundColor: 'rgba(0,255,0,0.3)',
               },
               {
                 label: "Ráfaga",
                 data: [...this.gust],
-                backgroundColor: 'red',
+                backgroundColor: 'rgba(255,0,0,0.3)',
               } ,
               {
                 label: "Ángulo",
                 data: [...this.deg],
-                backgroundColor: 'blue',
+                backgroundColor: 'rgba(0,0,255,0.3)',
               }  
             ]
           },
-          options: this.options
+          options: this.options2
           
         });
       })
