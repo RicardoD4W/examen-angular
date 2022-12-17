@@ -57,8 +57,7 @@ export class ChartGraphicComponent {
 
 
   createChart(){    
-    Chart.defaults.scales.linear.min = -10;
-    Chart.defaults.scales.linear.max = 45;
+
 
     this.activeRouting.params.subscribe(( {nombre} )=>{
       this.weatherService.peticionDetails(nombre).subscribe((respose)=>{
